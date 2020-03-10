@@ -1,0 +1,84 @@
+.form-header-option:before {
+	content: url(../images/icon-change-password.svg)
+}
+
+.chargeInfo:before {
+	content: url(../images/icon-info-payment.svg)
+}
+
+.editProfile-form-input-urlHost {
+	border-right: none;
+	border-radius: 2px 0 0 2px
+}
+
+.editProfile-form-input-urlUsername {
+	border-left: none;
+	border-radius: 0 2px 2px 0
+}
+
+.editProfile-form_select {
+	background: #fff;
+	height: 49px
+}
+
+#changePassword-form {
+	display: none;
+	position: fixed;
+	z-index: 11;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: #000;
+	background-color: rgba(0, 0, 0, .4)
+}
+
+.editProfile-passwordInfo-changePassword {
+	background: #fff;
+	margin: 7% auto;
+	padding: 25px 20px 20px;
+	border: 1px solid #f2f5f7;
+	width: 96%;
+	position: relative;
+	animation-name: animatetop;
+	animation-duration: .4s
+}
+
+@
+keyframes animatetop {
+	from {top: -300px;
+	opacity: 0
+}
+
+to {
+	top: 0;
+	opacity: 1
+}
+
+}
+.editProfile-closeModal {
+	color: #747c81;
+	position: absolute;
+	top: 4px;
+	right: 10px;
+	text-decoration: none
+}
+
+@media ( min-width :480px) {
+	.editProfile-passwordInfo-changePassword {
+		width: 70%
+	}
+}
+
+@media ( min-width :720px) {
+	.editProfile-passwordInfo-changePassword {
+		width: 60%
+	}
+}
+
+@media ( min-width :900px) {
+	.editProfile-passwordInfo-changePassword {
+		width: 40%
+	}
+}

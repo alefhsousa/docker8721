@@ -1,0 +1,1 @@
+!function(){var e=[];$("#editProfile-userInfo").length>0&&e.push(new ModalPasswordProfile),$("#editProfile-notaFiscal").length>0&&e.push(new ForeignFormProfile),e.forEach(function(e){e.listeners()})}();

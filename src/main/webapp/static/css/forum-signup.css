@@ -1,0 +1,68 @@
+.signup-now {
+	padding-bottom: 10px;
+	background-color: #fff
+}
+
+.forum-signup {
+	padding-bottom: 12px;
+	padding-top: 30px;
+	background-color: #fff
+}
+
+.forum-signup-banner {
+	background-color: #f2f5f7;
+	padding: 10px 0
+}
+
+.forum-signup-message {
+	display: block;
+	color: #5b6266;
+	text-align: center;
+	margin: 20px 10px 0;
+	font-size: 24px;
+	font-weight: 700;
+	letter-spacing: -.6px;
+	padding: 0
+}
+
+.forum-signup-button {
+	display: block;
+	margin: 10px auto;
+	font-size: 20px;
+	text-transform: uppercase;
+	background-color: #87d164;
+	color: #fff;
+	border-radius: 5px;
+	box-shadow: none;
+	border: none;
+	text-decoration: none;
+	max-width: 300px;
+	transition: opacity .5s;
+	font-weight: 700;
+	text-align: center;
+	padding-top: 16px;
+	height: 60px;
+	width: 270px
+}
+
+@media ( min-width :997px) {
+	.forum-signup-banner {
+		display: -ms-flexbox;
+		display: flex;
+		-ms-flex-pack: justify;
+		justify-content: space-between;
+		padding: 15px 15px;
+		height: 110px
+	}
+	.forum-signup-message {
+		margin-top: 0;
+		padding-top: 22px
+	}
+	.forum-signup-button {
+		display: inline-block;
+		margin: 10px 10px;
+		padding-top: 16px;
+		height: 60px;
+		width: 270px
+	}
+}

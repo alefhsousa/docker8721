@@ -1,0 +1,143 @@
+.topic-post {
+	padding-bottom: 1.5em
+}
+
+.topic-post-solved {
+	height: 45px;
+	line-height: 45px;
+	background-color: #f7ffe9;
+	border: solid 1px #eaf3da
+}
+
+.topic-post-solved-text {
+	color: #9fd344;
+	font-size: 1.1em;
+	font-weight: 700;
+	text-transform: uppercase;
+	margin-left: 20px;
+	vertical-align: baseline
+}
+
+.topic-post-header {
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	margin-bottom: 1em
+}
+
+.topic-post-date {
+	color: #747c81;
+	display: block;
+	text-align: right;
+	margin-bottom: 10px;
+	margin-top: 10px
+}
+
+.topic-post-content {
+	font-family: 'Source Serif Pro', serif;
+	margin-left: 10px;
+	margin-bottom: 10px;
+	color: #4c555b;
+	line-height: 24px;
+	font-size: 19px;
+	line-height: 31.5px
+}
+
+.topic-post-content p {
+	margin-bottom: 1em;
+	word-wrap: break-word
+}
+
+.topic-post-content ul {
+	list-style: initial;
+	margin: 1em 0
+}
+
+.topic-post-content li {
+	margin-left: 2.5em
+}
+
+.topic-post-actions {
+	text-align: right;
+	padding-bottom: 20px
+}
+
+.topic-answers .topic-post-actions {
+	border-bottom: 2px solid #c1c7ca
+}
+
+.topic-answers .topic-post-content {
+	font-size: 17px
+}
+
+.topic-post-actions>* {
+	display: inline-block
+}
+
+.topic-post-actions .vote {
+	vertical-align: middle
+}
+
+.topic-post-actions .vote #vote-up {
+	padding-bottom: 0;
+	width: 25px
+}
+
+.topic-post-solved-text:before {
+	content: '';
+	width: 15px;
+	height: 17px;
+	vertical-align: middle;
+	display: inline-block;
+	margin-right: 10px;
+	background-repeat: no-repeat
+}
+
+.topic-post-editButton:before, .topic-post-solveButton:before {
+	content: '';
+	width: 14px;
+	height: 16px;
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 5px;
+	background-repeat: no-repeat
+}
+
+.topic-post-solveButton-hideMobile {
+	display: none
+}
+
+.topic-post-solved-text:before {
+	background-image: url(../images/icon-solved.svg)
+}
+
+.topic-post-editButton:before {
+	background-image: url(../images/icon-edit.svg)
+}
+
+.topic-post-solveButton:before {
+	background-image: url(../images/icon-check.svg)
+}
+
+@media ( min-width :360px) {
+	.topic-post-solveButton-hideMobile {
+		display: inline-block
+	}
+}
+
+@media ( min-width :600px) {
+	.topic-post-header {
+		display: -ms-flexbox;
+		display: flex;
+		-ms-flex-pack: justify;
+		justify-content: space-between;
+		-ms-flex-direction: row;
+		flex-direction: row
+	}
+	.topic-post-date {
+		margin-top: 20px
+	}
+}

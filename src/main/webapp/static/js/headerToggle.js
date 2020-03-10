@@ -1,0 +1,1 @@
+$(".header-hamburguinho").on("click",function(){var a=$(".headerMobile");a.toggleClass("headerMobile--collapsed");var e=a.attr("aria-hidden");a.attr("aria-hidden","false"===e)});

@@ -1,0 +1,151 @@
+.busca-paginacao {
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-align: center;
+	align-items: center;
+	margin: 0 auto;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+	padding: 20px;
+	background-color: #fff
+}
+
+.busca-paginacao--disabled {
+	display: none
+}
+
+.busca-paginacao-links {
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-align: center;
+	align-items: center;
+	margin: 0
+}
+
+.search-noResult {
+	display: none
+}
+
+.search-noResult--visible {
+	display: block
+}
+
+.paginationLink {
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-ms-flex-align: center;
+	align-items: center;
+	border: 0;
+	text-decoration: none;
+	color: #747c81;
+	height: 28px;
+	min-width: 28px;
+	width: 28px;
+	margin-right: 5px;
+	border-radius: 50%;
+	transition: .5s;
+	margin-bottom: 0;
+	position: relative
+}
+
+.paginationLink:last-child {
+	margin-right: 0
+}
+
+.paginationLink--withSuspensionPoints {
+	margin-left: 10px
+}
+
+.paginationLink--withSuspensionPoints:before {
+	content: '...';
+	display: block;
+	color: #747c81;
+	position: absolute;
+	left: -37%;
+	top: 50%;
+	transform: translateY(-50%)
+}
+
+.paginationLink:nth-child(5n) {
+	margin-right: 0
+}
+
+.paginacao-pagina {
+	min-width: 100%
+}
+
+.busca-resultado-link {
+	width: 100%
+}
+
+.busca-paginacao .busca-botao-selecionado {
+	background-color: #747c81;
+	color: #fff;
+	transform: scale(1.1)
+}
+
+.busca-paginacao-prevNext {
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-align: center;
+	align-items: center;
+	text-decoration: none;
+	color: transparent;
+	font-weight: 700;
+	width: 20px;
+	height: 20px;
+	position: relative
+}
+
+.busca-paginacao-linksAnteriores:before {
+	transform: rotate(0);
+	margin-right: 10px
+}
+
+.busca-paginacao-linksAnteriores:before, .busca-paginacao-linksProximos:after
+	{
+	content: '';
+	display: block;
+	border-radius: 50%;
+	height: 20px;
+	min-width: 20px;
+	line-height: 20px;
+	color: #747c81;
+	background: url(../images/paginator-arrow.svg) no-repeat
+		center;
+	position: absolute;
+	top: 0;
+	left: 0
+}
+
+.busca-paginacao-linksProximos:after {
+	transform: rotate(180deg);
+	margin-left: 10px
+}
+
+.busca-paginacao-prevNext--disabled {
+	pointer-events: none;
+	opacity: .5
+}
+
+@media ( min-width :570px) {
+	.busca-paginacao-prevNext {
+		text-indent: 0;
+		overflow-x: visible;
+		word-break: break-all;
+		color: #747c81;
+		width: inherit;
+		height: inherit
+	}
+	.paginationLink {
+		height: 40px;
+		min-width: 40px;
+		width: 40px
+	}
+	.busca-paginacao-linksAnteriores:before, .busca-paginacao-linksProximos:after
+		{
+		position: static
+	}
+}

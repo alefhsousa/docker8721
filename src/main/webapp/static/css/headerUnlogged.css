@@ -1,0 +1,43 @@
+.headerUnlogged {
+	-ms-flex: 1;
+	flex: 1;
+	text-align: right;
+	font-size: 13px
+}
+
+.headerUnlogged-cta {
+	display: inline-block
+}
+
+.headerUnlogged-cta-text {
+	display: none
+}
+
+.headerUnlogged-cta-button {
+	display: inline-block;
+	text-decoration: none;
+	color: #fff;
+	font-weight: 700;
+	background: #5ad678;
+	padding: 8px 15px;
+	border-radius: 2px
+}
+
+.headerUnlogged-login {
+	display: inline-block;
+	text-decoration: none;
+	color: #747c81;
+	border: solid 2px #747c81;
+	font-weight: 700;
+	padding: 6px 13px;
+	border-radius: 2px
+}
+
+@media ( min-width :720px) {
+	.headerUnlogged-cta-text {
+		display: inline-block;
+		color: #747c81;
+		font-weight: 700;
+		margin-right: 10px
+	}
+}

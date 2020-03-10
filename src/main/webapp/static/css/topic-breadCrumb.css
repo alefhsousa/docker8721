@@ -1,0 +1,40 @@
+.topic-breadCrumb-list {
+	list-style: none;
+	margin: 10px 0 8px;
+	font-size: .9em
+}
+
+.topic-breadCrumb-item {
+	margin-top: 5px;
+	display: inline-block
+}
+
+.topic-breadCrumb-item:not (:last-child ):after {
+	background-image: url(../images/icon-arrow.svg);
+	transform: translateX(2px) translateY(1px) rotate(-90deg);
+	content: '';
+	width: 10px;
+	height: 10px;
+	display: inline-block;
+	background-repeat: no-repeat;
+	background-size: 10px
+}
+
+.topic-breadCrumb-item-link {
+	border-radius: 4px;
+	display: inline-block;
+	color: #000;
+	text-decoration: none;
+	font-weight: 400
+}
+
+@media ( min-width :720px) {
+	.topic-breadCrumb-item:not (:last-child ):after {
+		display: none
+	}
+	.topic-breadCrumb-item-link {
+		color: #fff;
+		padding: 3px 10px;
+		margin-right: 2px
+	}
+}

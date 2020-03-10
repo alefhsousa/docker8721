@@ -1,0 +1,230 @@
+.dashboard-categoryList {
+	list-style: none;
+	margin-top: 30px
+}
+
+.dashboard-categoryList-category {
+	width: 100%;
+	position: relative;
+	margin-top: 15px;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-flow: column wrap;
+	flex-flow: column wrap;
+	-ms-flex-pack: justify;
+	justify-content: space-between;
+	background-color: #fff;
+	border: solid 1px #e3e8ed;
+	border-left: solid 20px
+}
+
+.dashboard-categoryList-category-icon {
+	position: absolute;
+	top: 11px;
+	left: 4px;
+	height: 45px
+}
+
+.dashboard-categoryList-category-name {
+	height: 65px;
+	padding-left: 52px;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-align: center;
+	align-items: center;
+	border-bottom: solid 1px #e3e8ed
+}
+
+.dashboard-category-name-text {
+	font-size: 17px;
+	font-weight: 700;
+	text-decoration: none
+}
+
+.dashboard-categoryList-category-subcategories {
+	-ms-flex-order: 3;
+	order: 3
+}
+
+.dashboard-subcategories-list-subcategory {
+	display: inline-block
+}
+
+.dashboard-category-subcategories-list {
+	display: none;
+	padding: 20px 20px 15px;
+	width: 100%;
+	list-style: none;
+	text-align: left;
+	transition: top .2s ease;
+	font-size: 0
+}
+
+.dashboard-list-subcategory-link {
+	display: inline-block;
+	text-decoration: none;
+	padding: 3px 8px;
+	margin: 0 5px 5px 0;
+	font-size: 12px;
+	letter-spacing: .1px;
+	border-radius: 4px;
+	color: #747c81;
+	background-color: rgba(216, 216, 216, .4)
+}
+
+.dashboard-category-subcategories-dropdownButton {
+	height: 35px;
+	background-color: #f9fbfc;
+	border: none;
+	outline: 0;
+	width: 100%
+}
+
+.dashboard-category-subcategories-dropdownButton--active {
+	border-top: solid 1px #e3e8ed
+}
+
+.dashboard-category-subcategories-dropdownButton--active .dashboard-subcategories-dropdownButton-text:after
+	{
+	transform: rotate(180deg)
+}
+
+.dashboard-subcategories-dropdownButton-text {
+	position: relative;
+	font-size: 12px;
+	opacity: .8;
+	color: #767e83
+}
+
+.dashboard-subcategories-dropdownButton-text:after {
+	content: '';
+	position: absolute;
+	display: inline-block;
+	background: url(../images/icon-arrow-down.svg) center
+		no-repeat;
+	height: 100%;
+	width: 11px;
+	top: 0;
+	left: -19px;
+	transition: transform .2s ease
+}
+
+.dashboard-categoryList-category-stats {
+	-ms-flex-order: 2;
+	order: 2;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-flow: row nowrap;
+	flex-flow: row nowrap;
+	-ms-flex-pack: distribute;
+	justify-content: space-around;
+	text-decoration: none;
+	border-bottom: solid 1px #e3e8ed;
+	height: 68px
+}
+
+.categoryList-category-stats-item {
+	text-align: center;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-flow: column nowrap;
+	flex-flow: column nowrap;
+	-ms-flex-pack: center;
+	justify-content: center
+}
+
+.category-stats-item-number {
+	font-size: 16px;
+	font-weight: 600;
+	color: #747c81
+}
+
+.category-stats-item-text {
+	opacity: .8;
+	font-size: 12px;
+	color: #747c81
+}
+
+@media ( min-width :720px) {
+	.dashboard-categoryList {
+		margin-top: 50px
+	}
+	.dashboard-categoryList-category {
+		margin-top: 13px;
+		min-height: 130px;
+		padding-left: 30px;
+		border-left: solid 80px;
+		-ms-flex-pack: start;
+		justify-content: flex-start
+	}
+	.dashboard-categoryList-category-icon {
+		height: 50px;
+		top: calc(50% - 22px);
+		left: -65px
+	}
+	.dashboard-categoryList-category-name {
+		height: 24px;
+		margin: 22px 0 11px;
+		padding: 0;
+		border: none
+	}
+	.dashboard-category-name-text {
+		font-size: 18px
+	}
+	.dashboard-categoryList-category-subcategories {
+		-ms-flex-order: 2;
+		order: 2;
+		width: calc(100% - 240px)
+	}
+	.dashboard-category-subcategories-list {
+		display: -ms-flexbox;
+		display: flex;
+		-ms-flex-flow: row wrap;
+		flex-flow: row wrap;
+		padding: 0 30px 15px 0
+	}
+	.dashboard-list-subcategory-link {
+		margin-right: 5px
+	}
+	.dashboard-category-subcategories-dropdownButton {
+		display: none
+	}
+	.dashboard-categoryList-category-stats {
+		position: absolute;
+		top: 0;
+		right: 0;
+		-ms-flex-order: 3;
+		order: 3;
+		border: none;
+		height: 100%
+	}
+	.categoryList-category-stats-item {
+		width: 80px;
+		height: 100%;
+		border-left: solid 1px #e3e8ed
+	}
+	.category-stats-item-number {
+		font-size: 19px
+	}
+	.category-stats-item-text {
+		font-size: 11px
+	}
+}
+
+@media ( min-width :900px) {
+	.dashboard-categoryList-category-subcategories {
+		width: calc(100% - 300px)
+	}
+	.categoryList-category-stats-item {
+		width: 100px
+	}
+}
+
+@media ( min-width :1200px) {
+	.dashboard-categoryList-category-subcategories {
+		width: calc(100% - 360px)
+	}
+	.categoryList-category-stats-item {
+		width: 120px
+	}
+}

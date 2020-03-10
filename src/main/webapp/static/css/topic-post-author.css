@@ -1,0 +1,68 @@
+.topic-post-author {
+	margin-top: 20px;
+	margin-bottom: 10px;
+	margin-left: 5px;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-align: center;
+	align-items: center
+}
+
+.topic-post-author-details {
+	color: #747c81
+}
+
+.topic-post-author-name {
+	letter-spacing: -.6px;
+	text-decoration: none;
+	font-size: 1.2em;
+	color: #747c81;
+	font-weight: 700
+}
+
+.topic-post-author-photo {
+	margin-right: 10px;
+	margin-top: auto;
+	margin-bottom: auto
+}
+
+.topic-post-author-photo-img {
+	min-height: 50px;
+	min-width: 50px;
+	height: 50px;
+	width: 50px;
+	border-radius: 50%
+}
+
+.topic-post-author-desc {
+	display: block;
+	font-style: italic;
+	color: #5b6266;
+	font-size: .85em
+}
+
+.topic-post-author-moderator {
+	display: inline-block;
+	color: #719de9;
+	letter-spacing: -.4px;
+	font-size: .9em;
+	font-weight: 700
+}
+
+.topic-post-author-moderator:before {
+	display: inline-block;
+	content: '';
+	background-image: url(../images/icon-moderador.svg);
+	width: 10px;
+	height: 10px;
+	margin-right: 3px
+}
+
+.topic-post-author-exp {
+	display: inline-block
+}
+
+.topic-post-author-exp span {
+	color: #67b3c2;
+	font-weight: 700
+}

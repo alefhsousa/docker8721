@@ -1,0 +1,34 @@
+.banner {
+	font-family: 'Open Sans', sans-serif;
+	background: #a1b0c0
+}
+
+[data-product=alura_lingua] .banner {
+	background-color: #344861;
+	font-weight: 800
+}
+
+[data-product=alura_lingua] .banner-title {
+	border: none;
+	font-size: 1.5em;
+	padding: .875em 0;
+	color: #f7f8f9
+}
+
+.banner-title {
+	display: inline-block;
+	font-size: 1.5em;
+	padding: 1em 0;
+	letter-spacing: -1.2px;
+	font-weight: 900;
+	text-transform: uppercase;
+	color: #fff
+}
+
+.banner-title-link {
+	font-size: 1em;
+	font-family: 'Open Sans', sans-serif;
+	display: inline-block;
+	text-decoration: none;
+	color: inherit
+}

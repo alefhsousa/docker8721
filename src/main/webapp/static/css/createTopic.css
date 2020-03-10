@@ -1,0 +1,71 @@
+.createTopic .container {
+	max-width: 1200px
+}
+
+.createTopic-forumList {
+	margin-top: 2em
+}
+
+.createTopic-forumList .forumList .forumList-topics:last-child {
+	border-bottom: solid 2px #f2f5f7
+}
+
+.createTopic {
+	background: #fff;
+	font-family: "Open Sans"
+}
+
+.createTopic-suggestions {
+	color: #747c81;
+	font-weight: 700;
+	padding-top: 30px
+}
+
+.create-topic-linkAllTopics {
+	font-weight: 400;
+	color: #747c81;
+	text-align: center;
+	padding: 30px 0;
+	font-weight: 700
+}
+
+.create-topic-linkAllTopics a {
+	color: #747c81
+}
+
+.createTopic-banner {
+	background: #747c81;
+	color: #fff;
+	padding: 25px 0;
+	margin-bottom: 50px
+}
+
+.createTopic-banner-title {
+	font-weight: 400;
+	line-height: 1.5em
+}
+
+.createTopic-form {
+	padding-bottom: 20px
+}
+
+.createTopic-form-title {
+	border: 2px solid #c1c7ca;
+	display: block;
+	width: 100%;
+	padding: 5px;
+	margin-bottom: 10px;
+	max-width: 50%
+}
+
+.createTopic-form-button {
+	font-family: "Open Sans", sans-serif;
+	background: #689bbd;
+	border: 0;
+	font-size: 13.5px;
+	font-weight: 700;
+	padding: 15px 40px;
+	display: block;
+	margin-left: auto;
+	letter-spacing: -.2px
+}

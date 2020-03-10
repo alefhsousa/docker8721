@@ -1,0 +1,1 @@
+$(".headerBusca-icon").on("click",function(a){a.preventDefault();var e=$(this).parent().find(".headerBusca-form");e.toggleClass("headerBusca-form--active"),e.hasClass("headerBusca-form--active")&&e.find(".headerBusca-form-input").focus();var r=e.attr("aria-hidden");e.attr("aria-hidden","false"===r);var t=$(this).attr("aria-expanded");$(this).attr("aria-expanded","false"===t)});

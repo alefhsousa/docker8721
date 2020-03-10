@@ -1,0 +1,116 @@
+@media ( min-width :720px) {
+	.headerDesktop {
+		height: 80px;
+		display: block;
+		visibility: visible;
+		text-transform: uppercase;
+		visibility: visible
+	}
+	.headerDesktop .container {
+		height: 100%;
+		display: -ms-flexbox;
+		display: flex;
+		-ms-flex-align: center;
+		align-items: center;
+		-ms-flex-pack: justify;
+		justify-content: space-between
+	}
+	.headerMobile, .natural-header {
+		display: none;
+		visibility: hidden
+	}
+	.headerDesktop-content-menu {
+		height: 100%;
+		display: -ms-flexbox;
+		display: flex;
+		-ms-flex-align: center;
+		align-items: center
+	}
+	.header-logo {
+		width: 80px;
+		height: 36px
+	}
+	.content-menu-section {
+		position: relative;
+		margin-right: 20px;
+		height: 100%;
+		display: -ms-flexbox;
+		display: flex;
+		-ms-flex-align: center;
+		align-items: center
+	}
+	.content-menu-section-profile {
+		margin-right: 0
+	}
+	.content-menu-title {
+		border: none;
+		height: 100%
+	}
+	.content-menu-button {
+		font-weight: 600;
+		font-size: 14px;
+		padding: 0;
+		height: 100%;
+		text-decoration: none
+	}
+	.content-menu-button:before {
+		display: none
+	}
+	.header-profile-pontos .pointsGrid {
+		display: block
+	}
+	.profile-info-name {
+		display: -ms-flexbox;
+		display: flex;
+		-ms-flex-align: center;
+		align-items: center
+	}
+	.content-menu-button:after, .profile-info-name:after {
+		content: '';
+		display: block;
+		width: 12px;
+		height: 7px;
+		background: url(../images/arrow-down.svg) no-repeat center;
+		margin-left: 10px
+	}
+	.content-menu-section-levelMenu {
+		text-align: right
+	}
+	.headline-profile-avatar {
+		width: 45px;
+		height: 45px
+	}
+	.headerBusca-icon {
+		left: 110px;
+		top: 100%
+	}
+	.headerBusca-form {
+		display: -ms-flexbox;
+		display: flex;
+		width: 100%;
+		-ms-flex-align: center;
+		align-items: center
+	}
+	.headerBusca-submit {
+		margin-left: 5px
+	}
+	.headerBusca-desktop {
+		display: block
+	}
+	.profile--alert:before {
+		left: 30px;
+		bottom: 15px
+	}
+}
+
+@media ( min-width :1000px) {
+	.content-menu-section-news {
+		margin-right: 60px
+	}
+	.content-menu-section-community, .content-menu-section-courses {
+		margin-right: 45px
+	}
+	.headline-profile-avatar {
+		margin-right: 20px
+	}
+}
