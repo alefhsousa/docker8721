@@ -1,0 +1,21 @@
+- hosts: all
+  tasks:
+    - name: Permit SSH connections from new key pair
+      become: yes
+      blockinfile:
+        marker: ""
+        marker_begin: ""
+        marker_end: ""
+        block: "{{ lookup('file', '../ssh-keys/devops.pub') }}"
+        dest: /home/vagrant/.ssh/authorized_keys
+    - name: Update apt
+      become: yes
+      apt:
+        update_cache: yes
+    - name: Install Java and Tomcat
+      become: yes
+      apt:
+        name:
+          - openjdk-8-jre
+          - tomcat8
+        state: present
