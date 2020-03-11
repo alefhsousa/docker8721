@@ -1,0 +1,33 @@
+- hosts: all
+  tasks:
+    - name: Add Jenkins repository's key
+      become: yes
+      apt_key:
+        url: https://pkg.jenkins.io/debian/jenkins.io.key
+    - name: Add Jenkins repository
+      become: yes
+      apt_repository:
+        repo: deb https://pkg.jenkins.io/debian-stable binary/
+    - name: Update apt
+      become: yes
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600 #1 hora
+    - name: Install Java & Maven
+      become: yes
+      apt:
+        name:
+          - openjdk-8-jdk-headless
+          - maven
+    - name: Install Jenkins
+      become: yes
+      apt:
+        name: jenkins
+    - name: Copy web SSH private key
+      become: yes
+      copy:
+        src: ../ssh-keys/devops
+        dest: /home/vagrant/devops
+        mode: 400
+        owner: jenkins
+        group: jenkins
