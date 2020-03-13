@@ -1,0 +1,193 @@
+#!/usr/bin/env groovy
+import groovy.transform.Field
+import groovy.json.JsonSlurper
+import groovy.json.internal.LazyMap
+import java.util.concurrent.TimeUnit
+
+@Field String PROJECT = "docker8721"
+@Field String MAVEN_PATH = "/usr/bin/mvn"
+@Field String CUSTOM_TAG = new Date().format('yyyyMMdd-HHmm')
+@Field String APPTAG = "DEVOPS"
+@Field String APP_FOLDER = "." // Correponde a pasta onde esta a aplicacao Java. Se nao for utilizado, colocar '.'
+@Field String ARTIFACT_NAME = 'alura-forum.war'
+
+
+def clearWorkspace() {
+    stage("Cleaning Workspace for ${PROJECT}") {
+        sh 'pwd'
+        deleteDir()
+    }
+}
+
+def gitClone() {
+    stage("Git Clone ${PROJECT}") {
+        git credentialsId: 'github-ssh', url: "git@github.com:alefhsousa/docker8721.git" 
+    }
+}
+
+def unitTesting() {
+    stage("Unit Testing") {
+        sh "cd ${APP_FOLDER} && mvn clean test -U"
+    }
+}
+
+def buildJava() {
+    stage("Build Java application") {
+        sh "cd ${APP_FOLDER} && mvn clean package -U -Dmaven.test.skip=true"
+    }
+}
+
+def askToDeploy() {
+    stage ('Approval deploy?') {
+        script {
+            slackSend (color: 'warning', message: "Para aplicar a mudança em produção, acesse [Janela de 10 minutos]: ${JOB_URL}", tokenCredentialId: 'slack-token')
+            timeout(time: 10, unit: 'MINUTES') {
+                input(id: "Deploy Gate", message: "Deploy em produção?", ok: 'Deploy')
+            }
+        }
+    }
+}
+
+def notifyBuild() {
+    stage("Notify Pipeline Finish") {
+        def buildStatus = currentBuild.result
+        def subject = "${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'"
+        def summary = "${subject} (${env.BUILD_URL})"
+        def yellow = "#FFFF00"
+        def green = "#00FF00"
+        def red = "#FF0000"
+        
+        echo "resultado final ${currentBuild.result}"
+
+        def colorCode
+        if (buildStatus == 'STARTED') {
+            colorCode = yellow
+        } else if (buildStatus == 'SUCCESS') {
+            colorCode = green
+        } else {
+            colorCode = red
+        }
+        slackSend(color: colorCode, message: summary, channel: "CV6D7V2A0")
+    }
+}
+
+def deploy() {
+    stage ("Deploying the app") {
+        script {
+            def workspace = pwd()
+            def artifactFile = "target/${ARTIFACT_NAME}"
+            
+            sh 'scp -o StrictHostKeyChecking=no -i /home/vagrant/devops target/alura-forum.war vagrant@192.168.50.10:/home/vagrant/alura-forum.war'
+            sh "ssh -o StrictHostKeyChecking=no -i /home/vagrant/devops vagrant@192.168.50.10 'sudo mv /home/vagrant/alura-forum.war /var/lib/tomcat8/webapps/alura-forum.war'"
+        }
+    }
+}
+
+def blueGreenDeployment() {
+    stage ("Blue Green deployment") {
+        script {
+            def file = "/var/lib/jenkins/last_deploy"
+            def exists = fileExists "${file}"
+            def String lasDeploy = ''
+            
+            if (exists) {
+                lasDeploy = sh(returnStdout: true, script: "cat ${file}").trim()
+            }
+
+            println("resultado do lastDeploy: ${lasDeploy}")
+            if (lasDeploy == null || lasDeploy == '') {
+                
+                firstDeployment()
+            }else if (lasDeploy == 'blue') {
+                greenDeployment()
+            }
+            else {
+                blueDeployment()
+            }
+        }
+    }
+}
+
+def firstDeployment() {
+    stage("First deploy, apply artifact to two nodes") {
+        script {
+           sh "scp -o StrictHostKeyChecking=no -i /home/vagrant/devops target/alura-forum.war vagrant@192.168.50.10:/home/vagrant/alura-forum.war"
+           sh "ssh -o StrictHostKeyChecking=no -i /home/vagrant/devops vagrant@192.168.50.10 'sudo mv /home/vagrant/alura-forum.war /var/lib/tomcat8/webapps/alura-forum.war'" 
+           sh "scp -o StrictHostKeyChecking=no -i /home/vagrant/devops target/alura-forum.war vagrant@192.168.50.13:/home/vagrant/alura-forum.war"
+           sh "ssh -o StrictHostKeyChecking=no -i /home/vagrant/devops vagrant@192.168.50.13 'sudo mv /home/vagrant/alura-forum.war /var/lib/tomcat8/webapps/alura-forum.war'"
+           applyGreenNginxConfig()
+        }
+    }
+}
+def greenDeployment() {
+    stage("Starting green deployment") {
+        script {
+            sh "scp -o StrictHostKeyChecking=no -i /home/vagrant/devops target/alura-forum.war vagrant@192.168.50.10:/home/vagrant/alura-forum.war"
+            sh "ssh -o StrictHostKeyChecking=no -i /home/vagrant/devops vagrant@192.168.50.10 'sudo mv /home/vagrant/alura-forum.war /var/lib/tomcat8/webapps/alura-forum.war'"
+            applyGreenNginxConfig()
+        }
+    }
+}
+
+def blueDeployment() {
+    stage("Starting blue deployment") {
+        script {
+            sh "scp -o StrictHostKeyChecking=no -i /home/vagrant/devops target/alura-forum.war vagrant@192.168.50.13:/home/vagrant/alura-forum.war"
+            sh "ssh -o StrictHostKeyChecking=no -i /home/vagrant/devops vagrant@192.168.50.13 'sudo mv /home/vagrant/alura-forum.war /var/lib/tomcat8/webapps/alura-forum.war'"
+            applyBlueNginxConfig()
+        }
+    }
+}
+def applyGreenNginxConfig() {
+    stage("Applying green configuration to nginx") {
+        script {
+            sh "ssh -o StrictHostKeyChecking=no -i /home/vagrant/devops vagrant@192.168.50.15 'cp /vagrant/deploy/green/nginx.conf.green /etc/nginx/nginx.conf'"
+            sh "ssh -o StrictHostKeyChecking=no -i /home/vagrant/devops vagrant@192.168.50.15 'sudo service nginx reload'"
+            writeLastDeploymentInfo("green")
+        }
+    }
+}
+
+def applyBlueNginxConfig() {
+    stage("Applying blue configuration to nginx") {
+        script {
+            sh "ssh -o StrictHostKeyChecking=no -i /home/vagrant/devops vagrant@192.168.50.15 'cp /vagrant/deploy/blue/nginx.conf.blue /etc/nginx/nginx.conf'"
+            sh "ssh -o StrictHostKeyChecking=no -i /home/vagrant/devops vagrant@192.168.50.15 'sudo service nginx reload'"
+            writeLastDeploymentInfo("blue")        
+        }
+    }
+}
+
+def writeLastDeploymentInfo(def lastDeploy) {
+    stage("Writing last deploy config") {
+        script {
+            sh "echo ${lastDeploy} > /var/lib/jenkins/last_deploy"
+        }
+    }
+}
+
+
+def getGitAuthor = {
+    def commit = sh(returnStdout: true, script: 'git rev-parse HEAD')
+    author = sh(returnStdout: true, script: "git --no-pager show -s --format='%an' ${commit}").trim()
+}
+
+
+
+node {
+    try {
+        clearWorkspace()
+        gitClone()
+        //unitTesting()        
+        buildJava()
+        blueGreenDeployment()
+        currentBuild.result = "SUCCESS"
+        } catch (Exception err) {
+            println(err)
+            currentBuild.result = "FAILURE"
+        }
+        finally {
+            println ("Pipeline finished")
+            notifyBuild()
+    }
+}
