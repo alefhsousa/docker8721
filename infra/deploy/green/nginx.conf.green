@@ -1,0 +1,34 @@
+user www-data;
+worker_processes auto;
+pid /run/nginx.pid;
+include /etc/nginx/modules-enabled/*.conf;
+
+events {
+  worker_connections 768;
+}
+
+http {
+
+  upstream green {
+    server 192.168.50.10:8080;
+  }
+
+  upstream blue {
+    server 192.168.50.13:8080;
+  }
+
+
+  server {
+    listen 80;
+
+    location / {
+      add_header Cache-Control no-cache;
+      proxy_pass http://green;
+    }
+
+    location /demo {
+      add_header Cache-Control no-cache;
+      proxy_pass http://blue/alura-forum;
+    }
+  }
+}

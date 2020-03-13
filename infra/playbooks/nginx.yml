@@ -1,0 +1,20 @@
+- hosts: all
+  tasks:
+  - name: Update apt
+    become: yes
+    apt:
+      update_cache: yes
+      cache_valid_time: 3600 #1 hora
+  - name: Install nginx
+    become: yes
+    apt:
+      name: nginx
+      state: present
+  - name: Permit SSH connections from new key pair
+    become: yes
+    blockinfile:
+      marker: ""
+      marker_begin: ""
+      marker_end: ""
+      block: "{{ lookup('file', '../ssh-keys/devops.pub') }}"
+      dest: /home/vagrant/.ssh/authorized_keys
