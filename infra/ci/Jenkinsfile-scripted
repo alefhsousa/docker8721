@@ -178,7 +178,7 @@ node {
     try {
         clearWorkspace()
         gitClone()
-        //unitTesting()        
+        unitTesting()        
         buildJava()
         blueGreenDeployment()
         currentBuild.result = "SUCCESS"
