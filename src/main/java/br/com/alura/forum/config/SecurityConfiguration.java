@@ -30,6 +30,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		.antMatchers(HttpMethod.GET, "/topicos/*").permitAll()
 		.antMatchers("/usuarios/cadastro").permitAll()
 		.antMatchers("/login").permitAll()
+		.antMatchers("/metrics/**").permitAll()
 		.anyRequest().authenticated()
 		.and().formLogin().loginPage("/login").defaultSuccessUrl("/").permitAll()
 		.and().logout()

@@ -2,6 +2,7 @@ package br.com.alura.forum.controller;
 
 import java.util.List;
 
+import io.micrometer.prometheus.PrometheusMeterRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -43,10 +44,13 @@ public class TopicosController {
 	@Autowired
 	private DashboardService dashboardService;
 
+	@Autowired
+	private PrometheusMeterRegistry prometheusMeterRegistry;
 	@GetMapping
 	public String listarTopicos(FiltrosPesquisaTopicos filtros, Model model) {
 		carregarDashboard(model);
 		carregarTopicos(filtros, model);
+		prometheusMeterRegistry.counter("listar_topicos").increment();
 		return "lista-topicos";
 	}
 	
